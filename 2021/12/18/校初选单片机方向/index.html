@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hutaotao.jpg">
+  <link rel="mask-icon" href="/images/hutaotao.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mtianming.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="校初选单片机方向 往年题目  定时器PWM模式  （以下开启的是定时器3，用于PWM输出） 123456&#x2F;* USER CODE BEGIN 2 *&#x2F;HAL_TIM_PWM_Start(&amp;htim3,TIM_CHANNEL_1);&#x2F;&#x2F;将对应的定时器对应的通道打开，注意注意注意将这句话放在user code begin2后面TIM3-&gt;PSC&#x3D;XXX; &#x2F;&#x2F;根据自己要的频率计算TIM3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="校初选单片机方向">
+<meta property="og:url" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/index.html">
+<meta property="og:site_name" content="MT">
+<meta property="og:description" content="校初选单片机方向 往年题目  定时器PWM模式  （以下开启的是定时器3，用于PWM输出） 123456&#x2F;* USER CODE BEGIN 2 *&#x2F;HAL_TIM_PWM_Start(&amp;htim3,TIM_CHANNEL_1);&#x2F;&#x2F;将对应的定时器对应的通道打开，注意注意注意将这句话放在user code begin2后面TIM3-&gt;PSC&#x3D;XXX; &#x2F;&#x2F;根据自己要的频率计算TIM3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218155447199.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218160457047.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218155635417.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161633534.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161729247.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161821016.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161829357.png">
+<meta property="og:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161835911.png">
+<meta property="article:published_time" content="2021-12-18T07:53:42.000Z">
+<meta property="article:modified_time" content="2021-12-19T15:08:17.439Z">
+<meta property="article:author" content="Tian Ming">
+<meta property="article:tag" content="单片机学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218155447199.png">
+
+<link rel="canonical" href="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>校初选单片机方向 | MT</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="MT" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MT</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mtianming.top/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tian Ming">
+      <meta itemprop="description" content="一个小菜鸟的学习旅途">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          校初选单片机方向
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-18 15:53:42" itemprop="dateCreated datePublished" datetime="2021-12-18T15:53:42+08:00">2021-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-19 23:08:17" itemprop="dateModified" datetime="2021-12-19T23:08:17+08:00">2021-12-19</time>
+              </span>
+
+          
+            <span id="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/" class="post-meta-item leancloud_visitors" data-flag-title="校初选单片机方向" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="校初选单片机方向"><a href="#校初选单片机方向" class="headerlink" title="校初选单片机方向"></a>校初选单片机方向</h1><hr>
+<h2 id="往年题目"><a href="#往年题目" class="headerlink" title="往年题目"></a>往年题目</h2><p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218155447199.png" alt="image-20211218155447199"></p>
+<hr>
+<h2 id="定时器PWM模式"><a href="#定时器PWM模式" class="headerlink" title="定时器PWM模式"></a>定时器PWM模式</h2><p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218160457047.png" alt="image-20211218160457047"></p>
+<p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218155635417.png" alt="image-20211218155635417"></p>
+<p>（以下开启的是定时器3，用于PWM输出）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* USER CODE BEGIN 2 */</span></span><br><span class="line">HAL_TIM_PWM_Start(&amp;htim3,TIM_CHANNEL_1);<span class="comment">//将对应的定时器对应的通道打开，注意注意注意将这</span></span><br><span class="line">句话放在user code begin2后面</span><br><span class="line">TIM3-&gt;PSC=XXX; <span class="comment">//根据自己要的频率计算</span></span><br><span class="line">TIM3-&gt;ARR=XXX; <span class="comment">//根据自己要的频率计算</span></span><br><span class="line">TIM3-&gt;CCR1=XXX; <span class="comment">//ccr加数字对应的就是哪一个通道的ccr，根据自己要的占空比计算</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="定时器输入捕获模式"><a href="#定时器输入捕获模式" class="headerlink" title="定时器输入捕获模式"></a>定时器输入捕获模式</h2><p>我们要解算所输入信号的频率，占空比等信息</p>
+<p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161633534.png" alt="image-20211218161633534"></p>
+<p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161729247.png" alt="image-20211218161729247"></p>
+<p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161821016.png" alt="image-20211218161821016"></p>
+<p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161829357.png" alt="image-20211218161829357"></p>
+<p><img src="/2021/12/18/%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91/image-20211218161835911.png" alt="image-20211218161835911"></p>
+<p>设置全局变量：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Private variables --------------------------*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PV */</span></span><br><span class="line"><span class="keyword">float</span> duty;</span><br><span class="line"><span class="keyword">float</span> freq;</span><br><span class="line"><span class="comment">/* USER CODE END PV */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Private function prototypes -----------------*/</span></span><br></pre></td></tr></table></figure>
+
+<p>开启两个输入捕获中断：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HAL_TIM_IC_Start_IT(&amp;htim2, TIM_CHANNEL_1);</span><br><span class="line">HAL_TIM_IC_Start_IT(&amp;htim2, TIM_CHANNEL_2);</span><br></pre></td></tr></table></figure>
+
+<p>中断回调函数：（计算freq &amp; duty）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HAL_TIM_IC_CaptureCallback</span><span class="params">(TIM_HandleTypeDef *htim)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (htim-&gt;Instance == TIM2)&#123;</span><br><span class="line">		<span class="keyword">if</span> (htim-&gt;Channel == HAL_TIM_ACTIVE_CHANNEL_1)&#123;</span><br><span class="line">			freq = <span class="number">84000000.0f</span> / TIM2-&gt;CCR1;</span><br><span class="line">			duty = (<span class="keyword">float</span>)TIM2-&gt;CCR2 / TIM2-&gt;CCR1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="定时器输出比较模式"><a href="#定时器输出比较模式" class="headerlink" title="定时器输出比较模式"></a>定时器输出比较模式</h2><p><strong>比较输出【Compare Output】功能：</strong>定时器通过对预设的<strong>比较值</strong>与<strong>计数器的值</strong>做匹配比较之后，并依据相应的输出模式从而实现各类输出。如PWM输出、电平翻转、单脉冲输出、强制输出等。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0/" rel="tag"># 单片机学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/12/%E6%82%B2%E6%83%A8%E7%9A%84%E9%AB%98%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%94%9F%E6%B4%BB1/" rel="prev" title="悲惨的高数学习生活1">
+      <i class="fa fa-chevron-left"></i> 悲惨的高数学习生活1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/20/%E9%AB%98%E6%95%B0-%E4%B8%8A%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88/" rel="next" title="高数-上作业答案">
+      高数-上作业答案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%A1%E5%88%9D%E9%80%89%E5%8D%95%E7%89%87%E6%9C%BA%E6%96%B9%E5%90%91"><span class="nav-number">1.</span> <span class="nav-text">校初选单片机方向</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%80%E5%B9%B4%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">往年题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8PWM%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">定时器PWM模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%85%A5%E6%8D%95%E8%8E%B7%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">定时器输入捕获模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BE%93%E5%87%BA%E6%AF%94%E8%BE%83%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">定时器输出比较模式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tian Ming</p>
+  <div class="site-description" itemprop="description">一个小菜鸟的学习旅途</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:2864636574@qq.com" title="E-Mail → mailto:2864636574@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tian Ming</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'po24fqsPtjf9Yx7itrDyhahx-gzGzoHsz',
+      appKey     : 'GDadeHRbxKstFbGCLWAri7Tz',
+      placeholder: "ヾﾉ≧∀≦)o Come on w!!!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

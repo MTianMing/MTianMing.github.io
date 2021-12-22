@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hutaotao.jpg">
+  <link rel="mask-icon" href="/images/hutaotao.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mtianming.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="C_Learning_1_1 （预告：本文是融合怪） 使用C语言的7个步骤1.定义程序的目标 2.设计程序 3.编写代码 4.编译 5.运行程序 6.测试和调试程序 7.维护和修改程序  提高程序的可读性1.一致的缩进代码缩进方式是有挺多中的，一致的缩进可以为查看代码，检查代码提供很大的便利 例： 我们来对比一下： 12345678910if(Read_C1&#x3D;&#x3D;0)&amp;#123;    HAL_De">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C_Learning_1_1">
+<meta property="og:url" content="https://mtianming.top/2021/12/01/C-Learning-1/index.html">
+<meta property="og:site_name" content="MT">
+<meta property="og:description" content="C_Learning_1_1 （预告：本文是融合怪） 使用C语言的7个步骤1.定义程序的目标 2.设计程序 3.编写代码 4.编译 5.运行程序 6.测试和调试程序 7.维护和修改程序  提高程序的可读性1.一致的缩进代码缩进方式是有挺多中的，一致的缩进可以为查看代码，检查代码提供很大的便利 例： 我们来对比一下： 12345678910if(Read_C1&#x3D;&#x3D;0)&amp;#123;    HAL_De">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-01T05:05:17.000Z">
+<meta property="article:modified_time" content="2021-12-01T13:14:23.361Z">
+<meta property="article:author" content="Tian Ming">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mtianming.top/2021/12/01/C-Learning-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C_Learning_1_1 | MT</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="MT" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MT</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mtianming.top/2021/12/01/C-Learning-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tian Ming">
+      <meta itemprop="description" content="一个小菜鸟的学习旅途">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C_Learning_1_1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-01 13:05:17 / 修改时间：21:14:23" itemprop="dateCreated datePublished" datetime="2021-12-01T13:05:17+08:00">2021-12-01</time>
+            </span>
+
+          
+            <span id="/2021/12/01/C-Learning-1/" class="post-meta-item leancloud_visitors" data-flag-title="C_Learning_1_1" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/12/01/C-Learning-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/01/C-Learning-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="C-Learning-1-1"><a href="#C-Learning-1-1" class="headerlink" title="C_Learning_1_1"></a>C_Learning_1_1</h1><hr>
+<p>（<del>预告：本文是融合怪</del>）</p>
+<h2 id="使用C语言的7个步骤"><a href="#使用C语言的7个步骤" class="headerlink" title="使用C语言的7个步骤"></a>使用C语言的7个步骤</h2><p>1.定义程序的目标</p>
+<p>2.设计程序</p>
+<p>3.编写代码</p>
+<p>4.编译</p>
+<p>5.运行程序</p>
+<p>6.测试和调试程序</p>
+<p>7.维护和修改程序</p>
+<hr>
+<h2 id="提高程序的可读性"><a href="#提高程序的可读性" class="headerlink" title="提高程序的可读性"></a>提高程序的可读性</h2><h3 id="1-一致的缩进"><a href="#1-一致的缩进" class="headerlink" title="1.一致的缩进"></a>1.一致的缩进</h3><p>代码缩进方式是有挺多中的，一致的缩进可以为查看代码，检查代码提供很大的便利</p>
+<p>例：</p>
+<p>我们来对比一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Read_C1==<span class="number">0</span>)&#123;</span><br><span class="line">    HAL_Delay(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">if</span>(Read_C1==<span class="number">0</span>)</span><br><span class="line">    HAL_TIM_PWM_Start(&amp;htim4,TIM_CHANNEL_2);</span><br><span class="line">    __HAL_TIM_SET_AUTORELOAD(&amp;htim4,<span class="number">2000</span>);</span><br><span class="line">    __HAL_TIM_SET_COMPARE(&amp;htim4,TIM_CHANNEL_2,<span class="number">1000</span>);</span><br><span class="line">    HAL_Delay(<span class="number">100</span>);</span><br><span class="line">    __HAL_TIM_SET_COMPARE(&amp;htim4,TIM_CHANNEL_2,<span class="number">0</span>);</span><br><span class="line">    motor_adjust();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Read_C1==<span class="number">0</span>)&#123;</span><br><span class="line">    HAL_Delay(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">if</span>(Read_C1==<span class="number">0</span>)</span><br><span class="line">    	HAL_TIM_PWM_Start(&amp;htim4,TIM_CHANNEL_2);</span><br><span class="line">    __HAL_TIM_SET_AUTORELOAD(&amp;htim4,<span class="number">2000</span>);</span><br><span class="line">    __HAL_TIM_SET_COMPARE(&amp;htim4,TIM_CHANNEL_2,<span class="number">1000</span>);</span><br><span class="line">    HAL_Delay(<span class="number">100</span>);</span><br><span class="line">    __HAL_TIM_SET_COMPARE(&amp;htim4,TIM_CHANNEL_2,<span class="number">0</span>);</span><br><span class="line">    motor_adjust();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中你会发现，有两个if，而第二个if那里你会发现有一个没有缩进，这就给我们读代码的时候带来了挺大的困扰（即便是本人写的，有时也会觉得很烦）</p>
+<p>这里只出现了一次，若是很多嵌套你给我整个乱缩进，我可能会<del>带着想敲人的心情</del>先把他整理好再看的</p>
+<h3 id="2-避免冗余的注释"><a href="#2-避免冗余的注释" class="headerlink" title="2.避免冗余的注释"></a>2.避免冗余的注释</h3><p>注释是一件很棒的，可以很有效的提高代码的可读性（比如说你的某个小伙伴看不懂你没有注释的代码，就会来<del>烦</del>打扰你，就会导致一个团队的工作效率降低）</p>
+<p>but要适当的注释，精炼注释，否则你的小伙伴看到你一条注释一条代码的程序也会觉得很烦</p>
+<p>（一句话能说明白的，咱就不要说得那么冗长）</p>
+<h3 id="3-代码分组"><a href="#3-代码分组" class="headerlink" title="3.代码分组"></a>3.代码分组</h3><p>同一类凑在一起会好看些。</p>
+<p>通过注释、空行等方法。（简洁明了）</p>
+<h3 id="4-命名方案"><a href="#4-命名方案" class="headerlink" title="4.命名方案"></a>4.命名方案</h3><p>1.对于临时变量，我们可以将它们一致命名为<code>i</code>（或者其他单一字母</p>
+<h6 id="2-对于一些有意义的量，我们可以给他们命个名，就比如说计数器，我们可以命名为cnt而不是i，这样好让读代码的人可以知道你这个变量是干啥的，而不是i-j-k-a-b-c如果单片机里的引脚都这样命名，你可能会想给他寄刀片好吃的。"><a href="#2-对于一些有意义的量，我们可以给他们命个名，就比如说计数器，我们可以命名为cnt而不是i，这样好让读代码的人可以知道你这个变量是干啥的，而不是i-j-k-a-b-c如果单片机里的引脚都这样命名，你可能会想给他寄刀片好吃的。" class="headerlink" title="2.对于一些有意义的量，我们可以给他们命个名，就比如说计数器，我们可以命名为cnt而不是i，这样好让读代码的人可以知道你这个变量是干啥的，而不是i,j,k,a,b,c如果单片机里的引脚都这样命名，你可能会想给他寄刀片好吃的。"></a>2.对于一些有意义的量，我们可以给他们命个名，就比如说计数器，我们可以命名为<code>cnt</code>而不是<code>i</code>，这样好让读代码的人可以知道你这个变量是干啥的，而不是<code>i,j,k,a,b,c</code>如果单片机里的引脚都这样命名，你可能会想给他寄<del>刀片</del>好吃的。</h6><p>3.最后，对于量的命名，我们需要统一用一种命名方式，当然，有挺多的其实，我个人比较喜欢用下划线（key_play 表示用矩阵键盘来弹电子琴；key_scan表示对矩阵键盘进行扫描）</p>
+<h3 id="5-DRY-Principle（干燥原理）"><a href="#5-DRY-Principle（干燥原理）" class="headerlink" title="5.DRY Principle（干燥原理）"></a>5.DRY Principle（干燥原理）</h3><p>Ctrl + C，Ctrl + V作为当代大学生最常用地快捷键，在代码中确实要慎用地</p>
+<blockquote>
+<p><em>DRY意思是不要重复，即DIE: Duplication is Evil.（复制是邪恶的）</em></p>
+</blockquote>
+<p>复制粘贴会让你的代码变得十分冗杂</p>
+<p>一段代码实现的功能应当是它独有的，我们往往能够找到合适的办法，将一大段复制型代码转化为一小段（当然并不是说代码越渐短越高效）</p>
+<blockquote>
+<p><em>“每一条知识都必须在一个系统中有一个单一的、明确的、权威的表示。”</em></p>
+</blockquote>
+<p>遵守以上原则，我们能够大大缩短代码冗杂都度</p>
+<p>（最后分享一个离谱的案例：有人用if语句叠了几万行代码）</p>
+<h3 id="6-避免太多嵌套"><a href="#6-避免太多嵌套" class="headerlink" title="6.避免太多嵌套"></a>6.避免太多嵌套</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>（a）</span><br><span class="line">	<span class="keyword">if</span>（b）</span><br><span class="line">		<span class="keyword">if</span>（c）</span><br><span class="line">			<span class="keyword">if</span>（d）</span><br><span class="line">				<span class="keyword">if</span>（e）</span><br><span class="line">				........</span><br></pre></td></tr></table></figure>
+
+<p>这还只是if，太多嵌套的话会导致你很难跟踪调试</p>
+<p>（你知道的，C语言考试题里面经常来这种嵌套，还只是三层就已经够恶心人的了）</p>
+<h3 id="7-限制行的长度"><a href="#7-限制行的长度" class="headerlink" title="7.限制行的长度"></a>7.限制行的长度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;The China-Laos Railway, due to open this week, is a docking project between the China-proposed Belt and Road Initiative and Laos&#x27; strategy to convert itself from a landlocked country to a land-linked hub. It will bring new opportunities and provide huge momentum in strengthening Laos&#x27; economy. The train route will connect the Chinese city of Kunming to the Lao capital Vientiane, with grand plans for high-speed rail to ultimately snake down through Thailand and Malaysia to Singapore.&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>如果放在编译器里的话就是天灾，而且这对眼睛不好，最好还是不要超过80吧qwq</p>
+<p>小补充：</p>
+<p>这里就有三种方式可以应对这种超长代码：</p>
+<p>1.使用多个<code>printf()</code></p>
+<p>2.用反斜杠<code>\</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;The China-Laos Railway, due to open this week, \</span></span><br><span class="line"><span class="string">is a docking project between the China-proposed Belt and \</span></span><br><span class="line"><span class="string">Road Initiative and Laos&#x27; strategy to convert itself from \</span></span><br><span class="line"><span class="string">a landlocked country to a land-linked hub.\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>3.用ANSI C引入的字符串<code>&#39; &#39;</code>连接</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;hallo&quot;</span> <span class="string">&quot;i&quot;</span> <span class="string">&quot;am&quot;</span></span><br><span class="line">      <span class="string">&quot;a boy&quot;</span>);				<span class="comment">//即&quot; &quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="8-用多个文件来实现一个工程"><a href="#8-用多个文件来实现一个工程" class="headerlink" title="8.用多个文件来实现一个工程"></a>8.用多个文件来实现一个工程</h3><p>从理论上来讲，你可以把所有项目写在一个源文件中，但。。你维护的时候或者别人读的时候，绝对是噩梦般的体验</p>
+<p>这个是后话，先知道就好了（<del>其实晚自习要下课了</del>）</p>
+<hr>
+<p>（未完待续..）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/30/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E6%96%87/" rel="prev" title="我的第一篇博文">
+      <i class="fa fa-chevron-left"></i> 我的第一篇博文
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/04/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B1-1/" rel="next" title="打字游戏学习历程1.1">
+      打字游戏学习历程1.1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Learning-1-1"><span class="nav-number">1.</span> <span class="nav-text">C_Learning_1_1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8C%E8%AF%AD%E8%A8%80%E7%9A%847%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">使用C语言的7个步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8F%AF%E8%AF%BB%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">提高程序的可读性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%80%E8%87%B4%E7%9A%84%E7%BC%A9%E8%BF%9B"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.一致的缩进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%81%BF%E5%85%8D%E5%86%97%E4%BD%99%E7%9A%84%E6%B3%A8%E9%87%8A"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.避免冗余的注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E5%88%86%E7%BB%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.代码分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%91%BD%E5%90%8D%E6%96%B9%E6%A1%88"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.命名方案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E5%AF%B9%E4%BA%8E%E4%B8%80%E4%BA%9B%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E9%87%8F%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%BB%99%E4%BB%96%E4%BB%AC%E5%91%BD%E4%B8%AA%E5%90%8D%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82%E8%AF%B4%E8%AE%A1%E6%95%B0%E5%99%A8%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%91%BD%E5%90%8D%E4%B8%BAcnt%E8%80%8C%E4%B8%8D%E6%98%AFi%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%A5%BD%E8%AE%A9%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E4%BA%BA%E5%8F%AF%E4%BB%A5%E7%9F%A5%E9%81%93%E4%BD%A0%E8%BF%99%E4%B8%AA%E5%8F%98%E9%87%8F%E6%98%AF%E5%B9%B2%E5%95%A5%E7%9A%84%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AFi-j-k-a-b-c%E5%A6%82%E6%9E%9C%E5%8D%95%E7%89%87%E6%9C%BA%E9%87%8C%E7%9A%84%E5%BC%95%E8%84%9A%E9%83%BD%E8%BF%99%E6%A0%B7%E5%91%BD%E5%90%8D%EF%BC%8C%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%83%B3%E7%BB%99%E4%BB%96%E5%AF%84%E5%88%80%E7%89%87%E5%A5%BD%E5%90%83%E7%9A%84%E3%80%82"><span class="nav-number">1.2.4.0.0.1.</span> <span class="nav-text">2.对于一些有意义的量，我们可以给他们命个名，就比如说计数器，我们可以命名为cnt而不是i，这样好让读代码的人可以知道你这个变量是干啥的，而不是i,j,k,a,b,c如果单片机里的引脚都这样命名，你可能会想给他寄刀片好吃的。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-DRY-Principle%EF%BC%88%E5%B9%B2%E7%87%A5%E5%8E%9F%E7%90%86%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5.DRY Principle（干燥原理）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%81%BF%E5%85%8D%E5%A4%AA%E5%A4%9A%E5%B5%8C%E5%A5%97"><span class="nav-number">1.2.6.</span> <span class="nav-text">6.避免太多嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E9%99%90%E5%88%B6%E8%A1%8C%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">1.2.7.</span> <span class="nav-text">7.限制行的长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%94%A8%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.2.8.</span> <span class="nav-text">8.用多个文件来实现一个工程</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tian Ming</p>
+  <div class="site-description" itemprop="description">一个小菜鸟的学习旅途</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:2864636574@qq.com" title="E-Mail → mailto:2864636574@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tian Ming</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'po24fqsPtjf9Yx7itrDyhahx-gzGzoHsz',
+      appKey     : 'GDadeHRbxKstFbGCLWAri7Tz',
+      placeholder: "ヾﾉ≧∀≦)o Come on w!!!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hutaotao.jpg">
+  <link rel="mask-icon" href="/images/hutaotao.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mtianming.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="逐个步骤学习一下 1、代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打字游戏学习历程2-2">
+<meta property="og:url" content="https://mtianming.top/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/index.html">
+<meta property="og:site_name" content="MT">
+<meta property="og:description" content="逐个步骤学习一下 1、代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-06T13:41:44.000Z">
+<meta property="article:modified_time" content="2021-12-10T05:58:20.334Z">
+<meta property="article:author" content="Tian Ming">
+<meta property="article:tag" content="Win 桌面应用程序设计">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://mtianming.top/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>打字游戏学习历程2-2 | MT</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="MT" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MT</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mtianming.top/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tian Ming">
+      <meta itemprop="description" content="一个小菜鸟的学习旅途">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          打字游戏学习历程2-2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-06 21:41:44" itemprop="dateCreated datePublished" datetime="2021-12-06T21:41:44+08:00">2021-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-10 13:58:20" itemprop="dateModified" datetime="2021-12-10T13:58:20+08:00">2021-12-10</time>
+              </span>
+
+          
+            <span id="/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/" class="post-meta-item leancloud_visitors" data-flag-title="打字游戏学习历程2-2" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="逐个步骤学习一下"><a href="#逐个步骤学习一下" class="headerlink" title="逐个步骤学习一下"></a>逐个步骤学习一下</h1><hr>
+<h2 id="1、代码"><a href="#1、代码" class="headerlink" title="1、代码"></a>1、代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="comment">/********************************************************************/</span></span><br><span class="line"><span class="keyword">int</span> left = <span class="number">100</span>, top = <span class="number">20</span>, right = left + <span class="number">250</span>, bottom = top + <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> c1, c2;</span><br><span class="line"><span class="keyword">int</span> x = <span class="number">-1</span>, y = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">int</span> iScoring = <span class="number">0</span>, iFail = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> gameover = <span class="number">0</span>;</span><br><span class="line"><span class="comment">/********************************************************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowScoring</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> iScoring, <span class="keyword">int</span> iFail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> szTemp[<span class="number">32</span>];</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, <span class="string">&quot;当前得分：&quot;</span>, <span class="built_in">strlen</span>(<span class="string">&quot;当前得分：&quot;</span>));</span><br><span class="line">    y += <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">sprintf</span>(szTemp, <span class="string">&quot;%d&quot;</span>, iScoring);</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, szTemp, <span class="built_in">strlen</span>(szTemp));</span><br><span class="line">    y += <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, <span class="string">&quot;当前失误：&quot;</span>, <span class="built_in">strlen</span>(<span class="string">&quot;当前失误：&quot;</span>));</span><br><span class="line">    y += <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">sprintf</span>(szTemp, <span class="string">&quot;%d&quot;</span>, iFail);</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, szTemp, <span class="built_in">strlen</span>(szTemp));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Fire</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y1, <span class="keyword">int</span> y2)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    HPEN hOldPen, hNewPen = <span class="built_in">CreatePen</span>(PS_DASHDOTDOT, <span class="number">1</span>, <span class="built_in">RGB</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    hOldPen = (HPEN)<span class="built_in">SelectObject</span>(hdc, hNewPen);</span><br><span class="line">    <span class="built_in">MoveToEx</span>(hdc, x, y1, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">LineTo</span>(hdc, x, y2);</span><br><span class="line">    <span class="built_in">Sleep</span>(<span class="number">100</span>);</span><br><span class="line">    HPEN hNewPen2 = <span class="built_in">CreatePen</span>(PS_SOLID, <span class="number">1</span>, <span class="built_in">RGB</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>));</span><br><span class="line">    <span class="built_in">SelectObject</span>(hdc, hNewPen2);</span><br><span class="line">    <span class="built_in">MoveToEx</span>(hdc, x, y1, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">LineTo</span>(hdc, x, y2);</span><br><span class="line">    <span class="built_in">SelectObject</span>(hdc, hNewPen);</span><br><span class="line">    <span class="built_in">DeleteObject</span>(hNewPen);</span><br><span class="line">    <span class="built_in">DeleteObject</span>(hNewPen2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GameOver</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    COLORREF OldColor, NewColor = <span class="built_in">RGB</span>(<span class="built_in">rand</span>() % <span class="number">255</span>, <span class="built_in">rand</span>() % <span class="number">255</span>, <span class="built_in">rand</span>() % <span class="number">255</span>);</span><br><span class="line">    OldColor = <span class="built_in">SetTextColor</span>(hdc, NewColor);</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, <span class="string">&quot;GAME OVER !&quot;</span>, <span class="built_in">strlen</span>(<span class="string">&quot;GAME OVER !&quot;</span>));</span><br><span class="line">    <span class="built_in">SetTextColor</span>(hdc, OldColor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/********************************************************************/</span></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span> (message)</span><br><span class="line">    &#123;</span><br><span class="line">            </span><br><span class="line"><span class="comment">/*用户代码开始*/</span></span><br><span class="line">    <span class="keyword">case</span> WM_TIMER:</span><br><span class="line">        <span class="built_in"><span class="keyword">switch</span></span> (wParam) </span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>: </span><br><span class="line">            y += iScoring / <span class="number">10</span> + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(y &gt; bottom - <span class="number">40</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                gameover = <span class="number">1</span>;</span><br><span class="line">                <span class="built_in">KillTimer</span>(hWnd, <span class="number">1</span>);</span><br><span class="line">                <span class="built_in">SetTimer</span>(hWnd, <span class="number">2</span>, <span class="number">300</span>, <span class="literal">NULL</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">InvalidateRect</span>(hWnd, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="built_in">InvalidateRect</span>(hWnd, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> WM_CHAR:</span><br><span class="line">    &#123;</span><br><span class="line">        c2 = (wParam &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; wParam &lt;= <span class="string">&#x27;z&#x27;</span>) ? wParam + <span class="string">&#x27;A&#x27;</span> - <span class="string">&#x27;a&#x27;</span> : wParam;</span><br><span class="line">        HDC hdc = <span class="built_in">GetDC</span>(hWnd);</span><br><span class="line">        <span class="built_in">Fire</span>(hdc, left + <span class="number">5</span> + (c2 - <span class="string">&#x27;A&#x27;</span>) * <span class="number">9</span> + <span class="number">4</span>, top, bottom);</span><br><span class="line">        <span class="built_in">ReleaseDC</span>(hWnd, hdc);</span><br><span class="line">        <span class="keyword">if</span> (c2 == c1) </span><br><span class="line">        &#123;</span><br><span class="line">            c1 = <span class="built_in">rand</span>() % <span class="number">26</span> + <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">            x = left + <span class="number">5</span> + (c1 - <span class="string">&#x27;A&#x27;</span>) * <span class="number">9</span>;</span><br><span class="line">            y = top;</span><br><span class="line">            iScoring = iScoring + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            iFail = iFail + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="comment">/*用户代码结束*/</span></span><br><span class="line">            </span><br><span class="line">    <span class="keyword">case</span> WM_COMMAND:</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> wmId = <span class="built_in">LOWORD</span>(wParam);</span><br><span class="line">            <span class="comment">// 分析菜单选择:</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">/*用户代码开始*/</span></span><br><span class="line">            <span class="built_in"><span class="keyword">switch</span></span> (wmId)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">case</span> ID_START:</span><br><span class="line">                <span class="keyword">if</span> (gameover == <span class="number">1</span>)</span><br><span class="line">                    <span class="built_in">KillTimer</span>(hWnd, <span class="number">2</span>);</span><br><span class="line">                gameover = <span class="number">0</span>;</span><br><span class="line">                iScoring = <span class="number">0</span>;</span><br><span class="line">                iFail = <span class="number">0</span>;</span><br><span class="line">                c1 = <span class="built_in">rand</span>() % <span class="number">26</span> + <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">                x = left + <span class="number">5</span> + (c1 - <span class="string">&#x27;A&#x27;</span>) * <span class="number">9</span>;</span><br><span class="line">                y = top;</span><br><span class="line">                <span class="built_in">SetTimer</span>(hWnd, <span class="number">1</span>, <span class="number">10</span>, <span class="literal">NULL</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"><span class="comment">/*用户代码结束*/</span></span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">case</span> IDM_ABOUT:</span><br><span class="line">                <span class="built_in">DialogBox</span>(hInst, <span class="built_in">MAKEINTRESOURCE</span>(IDD_ABOUTBOX), hWnd, About);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> IDM_EXIT:</span><br><span class="line">                <span class="built_in">DestroyWindow</span>(hWnd);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">DefWindowProc</span>(hWnd, message, wParam, lParam);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> WM_PAINT:</span><br><span class="line">        &#123;</span><br><span class="line">            PAINTSTRUCT ps;</span><br><span class="line">            HDC hdc = <span class="built_in">BeginPaint</span>(hWnd, &amp;ps);</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO:</span> 在此处添加使用 hdc 的任何绘图代码...</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">/*用户代码开始*/</span></span><br><span class="line">            <span class="built_in">DrawBk</span>(hdc, left, top, right, bottom);</span><br><span class="line">            <span class="built_in">ShowScoring</span>(hdc, right + <span class="number">20</span>, top + <span class="number">50</span>, iScoring, iFail);</span><br><span class="line">            <span class="keyword">if</span> (gameover)</span><br><span class="line">                <span class="built_in">GameOver</span>(hdc, left + <span class="number">80</span>, top + <span class="number">130</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">char</span> szTemp[<span class="number">8</span>];</span><br><span class="line">                <span class="built_in">sprintf</span>(szTemp, <span class="string">&quot;%c&quot;</span>, c1);</span><br><span class="line">                <span class="built_in">TextOutA</span>(hdc, x, y, szTemp, <span class="built_in">strlen</span>(szTemp));</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">/*用户代码结束*/</span></span><br><span class="line">            </span><br><span class="line">            <span class="built_in">EndPaint</span>(hWnd, &amp;ps);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">        <span class="built_in">PostQuitMessage</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">DefWindowProc</span>(hWnd, message, wParam, lParam);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/********************************************************************/</span></span><br></pre></td></tr></table></figure>
+
+<p>(整体上添加的代码)</p>
+<hr>
+<h2 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShowScoring</span><span class="params">(HDC hdc, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> iScoring, <span class="keyword">int</span> iFail)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> szTemp[<span class="number">32</span>];</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, <span class="string">&quot;当前得分：&quot;</span>, <span class="built_in">strlen</span>(<span class="string">&quot;当前得分：&quot;</span>));</span><br><span class="line">    y += <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">sprintf</span>(szTemp, <span class="string">&quot;%d&quot;</span>, iScoring);</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, szTemp, <span class="built_in">strlen</span>(szTemp));</span><br><span class="line">    y += <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, <span class="string">&quot;当前失误：&quot;</span>, <span class="built_in">strlen</span>(<span class="string">&quot;当前失误：&quot;</span>));</span><br><span class="line">    y += <span class="number">20</span>;</span><br><span class="line">    <span class="built_in">sprintf</span>(szTemp, <span class="string">&quot;%d&quot;</span>, iFail);</span><br><span class="line">    <span class="built_in">TextOutA</span>(hdc, x, y, szTemp, <span class="built_in">strlen</span>(szTemp));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1）HDC-hdc："><a href="#1）HDC-hdc：" class="headerlink" title="1）HDC hdc："></a>1）HDC hdc：</h3><p>当需要在显示器上（当然包括打印机等设备上）绘图时，或者写文字的时候，需要取得设备的上下文句柄，即HDC。</p>
+<h3 id="2-TextOut函数"><a href="#2-TextOut函数" class="headerlink" title="2) TextOut函数"></a>2) TextOut函数</h3><p><code>BOOL TextOutA(HDC hdc, int x, int y, LPCSTR IpString, int c)；</code></p>
+<p>关于这个函数我们需要了解什么呢？没错，会用就行了。</p>
+<blockquote>
+<p>The <strong>TextOut</strong> function writes a character string at the specified location, using the currently selected font, background color, and text color.</p>
+</blockquote>
+<p>1.TextOut函数使用当前选定的字体、背景颜色和文本颜色<strong>在指定位置</strong>写入字符串。</p>
+<p>2.TextOut函数若后缀为A（TextOutA），则表示普通字符输出，若后缀为W（TextOutW），则表示宽字符输出。</p>
+<p>​    补充：宽字符是什么？</p>
+<blockquote>
+<p>Unicode 是支持所有字符集（包括无法以单个字节表示的字符集）的规范。为国际市场编程时应考虑使用 Unicode 或多字节字符集 (MBCS)，或使程序能够通过更改开关来生成支持两种字符集之一的程序。</p>
+</blockquote>
+<blockquote>
+<p>宽字符是双字节多语言字符代码。在当今的全球计算业内使用的大多数字符（包括技术符号和特殊的发布字符），都可以根据 Unicode 规范表示为宽字符形式。无法以 1 个宽字符表示的字符可以通过 Unicode 的代理项功能以 Unicode 对表示。由于每个宽字符总是以固定的 16 位大小表示，因此<strong>使用宽字符可以简化使用国际字符集进行的编程</strong>。</p>
+</blockquote>
+<blockquote>
+<p>通常，宽字符在内存中占用的空间比多字节字符多，但处理速度更快。另外，在多字节编码中一次只能表示一个区域设置，而世界上的所有字符集都同时以 Unicode 表示形式表示。</p>
+</blockquote>
+<p>3.返回类型：bool（布尔）类型</p>
+<p>bool类型常见于C++（当然如果要在C语言中使用的话，需要导入<code>stdbool.h</code>的头文件），bool类型中，true代表1（即真），false代表0（假）。</p>
+<p>4.一些参数</p>
+<p>x：指定用于字符串对齐的基准点的逻辑x坐标</p>
+<p>y：指定用于字符串对齐的基准点的逻辑y坐标</p>
+<p>LPCSTR IpString：指向要绘制的字符串的指针。字符串不需要以零结尾（不必以0结尾），因为 cchString 指定字符串的长度。</p>
+<p>c：指定字符串的长度。</p>
+<p>5.再来看我们写（chao）的：</p>
+<p>TextOutA(hdc, x, y, “当前得分：”, strlen(“当前得分：”));</p>
+<p>hdc不用管他，一般直接写上去就ok了；x，y表示坐标，即我们要在屏幕这个二维上的哪个地方打印这一字符串；“当前得分：”，为什么IpString明明是，<strong>指向要绘制的字符串的指针</strong>，而我们确实直接输入了一个字符串呢？相信学过C基础的各位，都知道在讲指针与字符串的时候讲过。</p>
+<blockquote>
+<p>注：字符串、数组、指针的内容另写博文</p>
+</blockquote>
+<hr>
+<p>（中途完结。。。由于这部分被建议不用学习，改用的时候移植代码即可）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Win-%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="tag"># Win 桌面应用程序设计</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/05/TypingGame2-1/" rel="prev" title="TypingGame2-1">
+      <i class="fa fa-chevron-left"></i> TypingGame2-1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/10/C-Learning-2/" rel="next" title="C-Learning-2">
+      C-Learning-2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%90%E4%B8%AA%E6%AD%A5%E9%AA%A4%E5%AD%A6%E4%B9%A0%E4%B8%80%E4%B8%8B"><span class="nav-number">1.</span> <span class="nav-text">逐个步骤学习一下</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">1、代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="nav-number">1.2.</span> <span class="nav-text">代码解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89HDC-hdc%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">1）HDC hdc：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-TextOut%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.3.</span> <span class="nav-text">2) TextOut函数</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tian Ming</p>
+  <div class="site-description" itemprop="description">一个小菜鸟的学习旅途</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:2864636574@qq.com" title="E-Mail → mailto:2864636574@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tian Ming</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'po24fqsPtjf9Yx7itrDyhahx-gzGzoHsz',
+      appKey     : 'GDadeHRbxKstFbGCLWAri7Tz',
+      placeholder: "ヾﾉ≧∀≦)o Come on w!!!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

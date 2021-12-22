@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/hutaotao.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/hutaotao.jpg">
+  <link rel="mask-icon" href="/images/hutaotao.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mtianming.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="指针、数组与字符串用数组表示其实是变相地使用指针；字符串是以空字符结尾地char类型数组。  一、指针 https:&#x2F;&#x2F;blog.csdn.net&#x2F;soonfly&#x2F;article&#x2F;details&#x2F;51131141  1.1了解指针1.1.1指针类型 从语法的角度看，你只要把指针声明语句里的指针名字去掉，剩下的部分就是这个指针的类型。  1.1.2指针所指向的类型 当你通过指针来访问指针所指向的内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C-Learning-2">
+<meta property="og:url" content="https://mtianming.top/2021/12/10/C-Learning-2/index.html">
+<meta property="og:site_name" content="MT">
+<meta property="og:description" content="指针、数组与字符串用数组表示其实是变相地使用指针；字符串是以空字符结尾地char类型数组。  一、指针 https:&#x2F;&#x2F;blog.csdn.net&#x2F;soonfly&#x2F;article&#x2F;details&#x2F;51131141  1.1了解指针1.1.1指针类型 从语法的角度看，你只要把指针声明语句里的指针名字去掉，剩下的部分就是这个指针的类型。  1.1.2指针所指向的类型 当你通过指针来访问指针所指向的内存">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mtianming.top/2021/12/10/C-Learning-2/image-20211215091148078.png">
+<meta property="article:published_time" content="2021-12-10T05:59:26.000Z">
+<meta property="article:modified_time" content="2021-12-15T01:27:49.618Z">
+<meta property="article:author" content="Tian Ming">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mtianming.top/2021/12/10/C-Learning-2/image-20211215091148078.png">
+
+<link rel="canonical" href="https://mtianming.top/2021/12/10/C-Learning-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C-Learning-2 | MT</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="MT" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MT</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mtianming.top/2021/12/10/C-Learning-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tian Ming">
+      <meta itemprop="description" content="一个小菜鸟的学习旅途">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C-Learning-2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-10 13:59:26" itemprop="dateCreated datePublished" datetime="2021-12-10T13:59:26+08:00">2021-12-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-15 09:27:49" itemprop="dateModified" datetime="2021-12-15T09:27:49+08:00">2021-12-15</time>
+              </span>
+
+          
+            <span id="/2021/12/10/C-Learning-2/" class="post-meta-item leancloud_visitors" data-flag-title="C-Learning-2" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/12/10/C-Learning-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/10/C-Learning-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="指针、数组与字符串"><a href="#指针、数组与字符串" class="headerlink" title="指针、数组与字符串"></a>指针、数组与字符串</h1><p>用数组表示其实是变相地使用指针；字符串是以空字符结尾地char类型数组。</p>
+<hr>
+<h2 id="一、指针"><a href="#一、指针" class="headerlink" title="一、指针"></a>一、指针</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/soonfly/article/details/51131141">https://blog.csdn.net/soonfly/article/details/51131141</a></p>
+</blockquote>
+<h3 id="1-1了解指针"><a href="#1-1了解指针" class="headerlink" title="1.1了解指针"></a>1.1了解指针</h3><p>1.1.1指针类型</p>
+<p>从语法的角度看，你只要把指针声明语句里的指针名字去掉，剩下的部分就是这个指针的类型。 </p>
+<p>1.1.2指针所指向的类型</p>
+<p>当你通过指针来访问指针所指向的内存区时，指针所指向的类型决定了编译器将把那片内存区里的内容当做什么来看待。</p>
+<p>从语法上看，你只须把指针声明语句中的指针名字和名字左边的指针声明符*去掉，剩下的就是指针所指向的类型。</p>
+<p>（把与指针搅和在一起的”类型”这个概念分成**”指针的类型”和”指针所指向的类型”两个概念**，是精通指针的关键点之一。）</p>
+<p>1.1.3指针的值</p>
+<p>指针的值是XX，就相当于说该指针指向了以XX为首地址的内存区域；</p>
+<p>指针指向了某块内存区域，就相当于说该指针的值是这块内存区域的首地址。</p>
+<p>1.1.4指针的大小：sizeof)(指针类型)</p>
+<h3 id="1-2指针的算术运算"><a href="#1-2指针的算术运算" class="headerlink" title="1.2指针的算术运算"></a>1.2指针的算术运算</h3><p>指针加n减n表示为，p的地址 + n * 指向类型的大小</p>
+<p><code>p + sizeof(type) * n</code></p>
+<p>指针之间可以进行减法运算，但需要保证同一类型；指针之间的加法运算是非法操作，无意义。</p>
+<h3 id="1-3运算符-amp-和"><a href="#1-3运算符-amp-和" class="headerlink" title="1.3运算符&amp;和*"></a>1.3运算符&amp;和*</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">12</span>; <span class="keyword">int</span> b; <span class="keyword">int</span> *p; <span class="keyword">int</span> **ptr;</span><br><span class="line">p=&amp;a; </span><br><span class="line">*p=<span class="number">24</span>; </span><br><span class="line">ptr=&amp;p;</span><br><span class="line">*ptr=&amp;b; </span><br><span class="line">**ptr=<span class="number">34</span>; </span><br></pre></td></tr></table></figure>
+
+<p>（抛掉解释看懂这个）</p>
+<h3 id="1-4指针安全问题"><a href="#1-4指针安全问题" class="headerlink" title="1.4指针安全问题"></a>1.4指针安全问题</h3><p>越界访问会导致其他区域的值被改变，可能导致严重错误（当然安全性高的编译器会报错）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="keyword">int</span> *ptr;</span><br><span class="line">ptr=(<span class="keyword">int</span> *)&amp;s;</span><br><span class="line">*ptr=<span class="number">1298</span>；</span><br><span class="line"><span class="comment">//最后一条语句不但改变了s 所占的一个字节，还把和s 相临的高地址方向的三个字节也改变了。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a;</span><br><span class="line"><span class="keyword">int</span> *ptr=&amp;a;</span><br><span class="line">ptr++;<span class="comment">//指针指向了一个未知的区域</span></span><br><span class="line">*ptr=<span class="number">115</span>;<span class="comment">//还赋了值</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用指针的时候要注意指针到底指向了哪里。（特别是数组，虽然可能会有报错提示）</p>
+<blockquote>
+<p>在指针的强制类型转换：ptr1=(TYPE *)ptr2 中，如果sizeof(ptr2的类型)大于sizeof(ptr1 的类型)，那么在使用指针ptr1 来访问ptr2所指向的存储区时是安全的。如果sizeof(ptr2 的类型) 小于sizeof(ptr1 的类型)，那么在使用指针ptr1 来访问ptr2 所指向的存储区时是不安全的。</p>
+</blockquote>
+<p><img src="/2021/12/10/C-Learning-2/image-20211215091148078.png" alt="image-20211215091148078"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="keyword">char</span>* p1 = &amp;a;</span><br><span class="line"><span class="keyword">int</span>* p2 = (<span class="keyword">int</span>*)&amp;a;</span><br><span class="line">*p2 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, a);</span><br></pre></td></tr></table></figure>
+
+<p>（上图及代码表示：sizeof(ptr2的类型)小于sizeof(ptr1 的类型)；会导致栈溢出）</p>
+<hr>
+<h2 id="二、数组"><a href="#二、数组" class="headerlink" title="二、数组"></a>二、数组</h2><h3 id="2-1-数组"><a href="#2-1-数组" class="headerlink" title="2.1 数组"></a>2.1 数组</h3><p>2.1.1 初始化数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>有时候需要将数组设置为只读，以保护数组内的数据不会被改变：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果部分初始化，其余的值被赋值为0：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;arr[3] = %d\n&quot;</span>, arr[<span class="number">3</span>]);</span><br><span class="line"><span class="comment">//打印结果：arr[3] = 0</span></span><br></pre></td></tr></table></figure>
+
+<p>若初始化时省略方括号内的数字，则编译器会根据数组内的元素个数，自动确定数组大小:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;size of arr = %d\n&quot;</span>, <span class="keyword">sizeof</span>(arr));<span class="comment">//sizeof(数组名)得出的是整个数组的大小</span></span><br><span class="line"><span class="comment">//打印结果：size of arr = 20，说明编译器自动赋予了数组五个元素</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>补充：<code>sizeof</code>是C语言中保留关键字，也可以认为是一种运算符，单目运算符。sizeof实际上是获取了数据类型在内存中所占用的存储空间。</p>
+</blockquote>
+<p>2.1.2 指定初始化器</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr1[<span class="number">6</span>] = &#123;[<span class="number">5</span>] = <span class="number">1</span>&#125;;		<span class="comment">//则最后一个元素被赋值为1</span></span><br><span class="line"><span class="keyword">int</span> arr2[<span class="number">6</span>] = &#123;<span class="number">1</span>, [<span class="number">4</span>] = <span class="number">10</span>, <span class="number">11</span>, [<span class="number">0</span>] = <span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">//依次赋值为：2、0、0、0、10、11</span></span><br><span class="line"><span class="keyword">int</span> arr3[<span class="number">6</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">//全部赋值为0,只有0可以这样做</span></span><br></pre></td></tr></table></figure>
+
+<p>2.1.3 边界</p>
+<p>使用越界的数组会导致使用时改变了其他变量的值（有些编译器会直接报错，中断程序）；</p>
+<p>数组的元素编号<strong>从0开始</strong>；</p>
+<p>声明数组的时候使用符号常量表示数组的大小可以增加代码的可读性</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> COLOR_NUM 10</span></span><br><span class="line"><span class="keyword">int</span> arr[COLOR_NUM] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">//使用的时候COLOR_NUM即为数组的最后一个元素</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-多维数组"><a href="#2-2-多维数组" class="headerlink" title="2.2 多维数组"></a>2.2 多维数组</h3><p>二维：<code>int arr[2][2]</code></p>
+<p>三维：<code>int arr[2][2][2]</code></p>
+<blockquote>
+<p>注：多维数组只能够省略第一维，即只能写为<code>arr[][num]</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[<span class="number">2</span>][<span class="number">2</span>] =</span><br><span class="line">&#123;</span><br><span class="line">	&#123;<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">&#125;;<span class="comment">//写成这样可以增强可读性</span></span><br><span class="line"><span class="comment">//或者int arr[2][2] = &#123;0, 1, 2, 3&#125;;，即当第一行填满后，会自动跳到第二行继续</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、字符串"><a href="#三、字符串" class="headerlink" title="三、字符串"></a>三、字符串</h2><hr>
+<h2 id="四、指针与数组"><a href="#四、指针与数组" class="headerlink" title="四、指针与数组"></a>四、指针与数组</h2><hr>
+<h2 id="五、指针、数组、函数与字符串"><a href="#五、指针、数组、函数与字符串" class="headerlink" title="五、指针、数组、函数与字符串"></a>五、指针、数组、函数与字符串</h2><hr>
+<p>（未完待续…）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/06/%E6%89%93%E5%AD%97%E6%B8%B8%E6%88%8F%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B2-2/" rel="prev" title="打字游戏学习历程2-2">
+      <i class="fa fa-chevron-left"></i> 打字游戏学习历程2-2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/12/Openmv-1/" rel="next" title="Openmv-1">
+      Openmv-1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E3%80%81%E6%95%B0%E7%BB%84%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text">指针、数组与字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E9%92%88"><span class="nav-number">1.1.</span> <span class="nav-text">一、指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E4%BA%86%E8%A7%A3%E6%8C%87%E9%92%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1了解指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E6%8C%87%E9%92%88%E7%9A%84%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2指针的算术运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E8%BF%90%E7%AE%97%E7%AC%A6-amp-%E5%92%8C"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3运算符&amp;和*</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4%E6%8C%87%E9%92%88%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4指针安全问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.</span> <span class="nav-text">二、数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 多维数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.3.</span> <span class="nav-text">三、字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84"><span class="nav-number">1.4.</span> <span class="nav-text">四、指针与数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%8C%87%E9%92%88%E3%80%81%E6%95%B0%E7%BB%84%E3%80%81%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.5.</span> <span class="nav-text">五、指针、数组、函数与字符串</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tian Ming</p>
+  <div class="site-description" itemprop="description">一个小菜鸟的学习旅途</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:2864636574@qq.com" title="E-Mail → mailto:2864636574@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tian Ming</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'po24fqsPtjf9Yx7itrDyhahx-gzGzoHsz',
+      appKey     : 'GDadeHRbxKstFbGCLWAri7Tz',
+      placeholder: "ヾﾉ≧∀≦)o Come on w!!!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
